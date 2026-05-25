@@ -1,0 +1,90 @@
+:root{
+  --bg: #f5f9ff;
+  --white: #ffffff;
+  --blue: #0b63d6;
+  --muted: #6b7c93;
+  --card-shadow: rgba(11,99,214,0.12);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;background:var(--bg);color:#08324b}
+canvas{position:fixed;inset:0;z-index:-1}
+.container{max-width:980px;margin:0 auto;padding:20px}
+header{padding:12px 0}
+nav{display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;color:var(--blue);font-size:1.1rem}
+.nav-links{list-style:none;display:flex;gap:12px;margin:0;padding:0}
+.nav-links a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;transition:all .18s}
+.nav-links a:hover{background:rgba(11,99,214,0.06);color:var(--blue)}
+.nav-links a.active{color:var(--blue);font-weight:600}
+
+.card{background:var(--white);border-radius:12px;box-shadow:0 6px 20px var(--card-shadow);padding:20px}
+.profile-card{display:flex;gap:18px;align-items:center}
+.profile-photo{width:120px;height:120px;border-radius:12px;background:linear-gradient(180deg,var(--blue),#3a86ff);display:flex;align-items:center;justify-content:center;color:white;font-size:48px}
+.profile-photo img{width:100%;height:100%;object-fit:cover;border-radius:10px;display:block}
+.profile-content h1{margin:0 0 6px 0}
+.subtitle{color:var(--muted);margin:0 0 12px 0}
+.matric{font-weight:600;color:#0e3b5b}
+.about{color:var(--muted);line-height:1.5}
+.actions{margin-top:14px;display:flex;gap:10px}
+.btn{background:var(--blue);color:var(--white);padding:8px 14px;border-radius:8px;text-decoration:none;box-shadow:0 6px 14px rgba(11,99,214,0.16);transition:transform .14s ease,box-shadow .14s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(11,99,214,0.18)}
+.btn.ghost{background:transparent;color:var(--blue);box-shadow:none;border:1px solid rgba(11,99,214,0.12)}
+
+.courses-list h2{margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:12px}
+.course-card{background:linear-gradient(180deg,#ffffff, #f7fbff);padding:14px;border-radius:10px;border:1px solid rgba(11,99,214,0.04);transition:transform .16s ease,box-shadow .16s}
+.course-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(9,54,115,0.06)}
+.course-code{display:inline-block;background:rgba(11,99,214,0.08);color:var(--blue);padding:6px 8px;border-radius:6px;font-weight:700;margin-bottom:8px}
+
+.footer-inner{display:flex;justify-content:space-between;align-items:center;padding:18px 0;color:var(--muted)}
+.footer-inner a{color:var(--blue);text-decoration:none}
+
+/* responsive tweaks */
+@media (max-width:600px){
+  .profile-card{flex-direction:column;align-items:flex-start}
+  .profile-photo{width:100%;height:160px;border-radius:10px}
+}
+
+/* subtle entrance animations */
+.card{opacity:0;transform:translateY(8px);animation:cardIn .5s ease forwards}
+@keyframes cardIn{to{opacity:1;transform:none}}
+
+/* toast for copy confirmation */
+.toast{position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:24px;background:var(--blue);color:var(--white);padding:10px 14px;border-radius:8px;box-shadow:0 8px 24px rgba(11,99,214,0.18);opacity:0;pointer-events:none;transition:transform .18s ease,opacity .18s}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* floating shapes */
+.float-wrap{position:fixed;inset:0;pointer-events:none;z-index:0}
+.float{position:absolute;border-radius:50%;opacity:.08;filter:blur(10px)}
+.float.f1{width:220px;height:220px;background:linear-gradient(135deg,#0b63d6,#3a86ff);left:8%;top:10%;animation:floatUp 8s ease-in-out infinite}
+.float.f2{width:140px;height:140px;background:linear-gradient(135deg,#0b63d6,#7fb1ff);left:70%;top:20%;animation:floatUp 10s ease-in-out infinite;animation-delay:2s}
+.float.f3{width:100px;height:100px;background:linear-gradient(135deg,#0b63d6,#4e9bff);left:45%;top:65%;animation:floatUp 12s ease-in-out infinite;animation-delay:1s}
+.float.f4{width:180px;height:180px;background:linear-gradient(135deg,#3a86ff,#6fb3ff);left:80%;top:75%;animation:floatUp 9s ease-in-out infinite;animation-delay:3s}
+
+@keyframes floatUp{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-28px) translateX(8px)}100%{transform:translateY(0) translateX(0)}}
+
+/* ensure content sits above floats */
+header,main,footer{position:relative;z-index:1}
+
+/* make the intro a full-screen hero */
+.intro{min-height:85vh;display:flex;align-items:center}
+
+/* spark styles */
+.sparks{position:absolute;inset:0;pointer-events:none}
+.spark{position:absolute;display:block;border-radius:50%;background:rgba(255,255,255,0.22);width:6px;height:6px;opacity:0;transform:scale(.2)}
+.spark.s1{left:12%;top:18%;animation:spark 3s infinite 0s}
+.spark.s2{left:30%;top:8%;animation:spark 3.6s infinite .4s}
+.spark.s3{left:50%;top:28%;animation:spark 4s infinite .8s}
+.spark.s4{left:70%;top:16%;animation:spark 3.2s infinite 1.2s}
+.spark.s5{left:85%;top:40%;animation:spark 3.8s infinite .6s}
+.spark.s6{left:22%;top:62%;animation:spark 4.2s infinite 1.4s}
+.spark.s7{left:40%;top:72%;animation:spark 3.4s infinite .2s}
+.spark.s8{left:60%;top:82%;animation:spark 3.9s infinite .9s}
+.spark.s9{left:78%;top:68%;animation:spark 4.1s infinite 1.6s}
+.spark.s10{left:92%;top:24%;animation:spark 3.7s infinite .3s}
+
+@keyframes spark{0%{opacity:0;transform:scale(.2)}40%{opacity:1;transform:scale(1.1)}100%{opacity:0;transform:scale(.2)}}
+
+@media (prefers-reduced-motion: reduce){
+  .float,.spark{animation:none !important;opacity:.06}
+}
